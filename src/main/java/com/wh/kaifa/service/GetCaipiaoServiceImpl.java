@@ -68,10 +68,10 @@ public class GetCaipiaoServiceImpl implements GetCaipiaoService {
                 BigDecimal result = bd.divide(new BigDecimal(ids.size()), 4, BigDecimal.ROUND_HALF_UP);
                 System.out.println(i + "后" + paramId + "期概率" + result.toString());
                 if (paramId == 1) {
-                    if (result.compareTo(new BigDecimal(0.44)) >= 0) {
-                        System.out.println(i);
+//                    if (result.compareTo(new BigDecimal(0.44)) >= 0) {
+//                        System.out.println(i);
                         resultMap.put(i, result.toString());
-                    }
+//                    }
                 }
 
                 if (paramId == 2) {

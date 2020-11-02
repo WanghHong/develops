@@ -444,9 +444,9 @@ public class CaipiaoServiceImpl implements CaipiaoService {
                     }
                     if (m >= 1 && m < 2) {
                         System.out.println("m=" + m + "result:" + result);
-                        if (result.compareTo(new BigDecimal(0.65)) >= 0) {
+//                        if (result.compareTo(new BigDecimal(0.65)) >= 0) {
                             resultMap.put(i, result.toString());
-                        }
+//                        }
                     }
                 }
             }
