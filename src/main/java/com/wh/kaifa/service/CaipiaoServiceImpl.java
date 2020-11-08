@@ -1,6 +1,7 @@
 package com.wh.kaifa.service;
 
 import com.wh.kaifa.DTO.CaipiaoDTO;
+import com.wh.kaifa.DTO.ResultDTO;
 import com.wh.kaifa.mapper.CaipaiMapper;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -742,6 +743,101 @@ public class CaipiaoServiceImpl implements CaipiaoService {
         return null;
     }
 
+    @Override
+    public String getThreeRate(String openNum1, String openNum2, String openNum3) {
+        try {
+            List<Integer> list = null;
+            List<Integer> resultList1 = null;
+            List<Integer> resultList2 = null;
+            List<Integer> resultList3 = null;
+            List<Integer> resultList4 = null;
+            List<Integer> resultList5 = null;
+            for (int i = 0; i < 5; i ++) {
+                list = new ArrayList<>();
+                list.add(Integer.valueOf(String.valueOf(openNum1.charAt(i))));
+                list.add(Integer.valueOf(String.valueOf(openNum2.charAt(i))));
+                list.add(Integer.valueOf(String.valueOf(openNum3.charAt(i))));
+                if (i == 0) {
+                    resultList1 = handNumlist(list, i);
+                }
+                if (i == 1) {
+                    resultList2 = handNumlist(list, i);
+                }
+                if (i == 2) {
+                    resultList3 = handNumlist(list, i);
+                }
+                if (i == 3) {
+                    resultList4 = handNumlist(list, i);
+                }
+                if (i == 4) {
+                    resultList5 = handNumlist(list, i);
+                }
+            }
+            List<Integer> finalList = new ArrayList<>();
+            int count = 0;
+            for (int i = 0; i <= 9; i ++) {
+                count = 0;
+                if (resultList1.contains(i)) {
+                    count ++;
+                }
+                if (resultList2.contains(i)) {
+                    count ++;
+                }
+                if (resultList3.contains(i)) {
+                    count ++;
+                }
+                if (resultList4.contains(i)) {
+                    count ++;
+                }
+                if (resultList5.contains(i)) {
+                    count ++;
+                }
+                if (count >= 4) {
+                    finalList.add(i);
+                }
+            }
+            return finalList.toString();
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    private List<Integer> handNumlist(List<Integer> list, Integer position) throws Exception {
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("position1", list.get(0));
+        paramMap.put("position2", list.get(1));
+        paramMap.put("position3", list.get(2));
+        List<ResultDTO> resultDTOS = new ArrayList<>();
+        if (position == 0) {
+            resultDTOS = caipaiMapper.queryThreeRate1(paramMap);
+        }
+        if (position == 1) {
+            resultDTOS = caipaiMapper.queryThreeRate2(paramMap);
+        }
+        if (position == 2) {
+            resultDTOS = caipaiMapper.queryThreeRate3(paramMap);
+        }
+        if (position == 3) {
+            resultDTOS = caipaiMapper.queryThreeRate4(paramMap);
+        }
+        if (position == 4) {
+            resultDTOS = caipaiMapper.queryThreeRate5(paramMap);
+        }
+        Integer sum = 0;
+        for (ResultDTO resultDTO : resultDTOS) {
+            sum += resultDTO.getCountNum();
+        }
+        List<Integer> result = new ArrayList<>();
+        for (ResultDTO resultDTO : resultDTOS) {
+            BigDecimal resultRate = new BigDecimal(resultDTO.getCountNum()).
+                    divide(new BigDecimal(sum), 4, BigDecimal.ROUND_HALF_UP);
+            if (resultRate.compareTo(new BigDecimal(0.1)) > 0) {
+                result.add(resultDTO.getOpenNum());
+            }
+        }
+        return result;
+    }
+
     private void ableCaipiaoDTO(List<CaipiaoDTO> caipiaoDTOS, Map<Integer, List<Integer>> map) throws Exception {
         boolean flag = false;
         for (int i = 0; i <= 9; i++) {
@@ -866,5 +962,6 @@ public class CaipiaoServiceImpl implements CaipiaoService {
         }
         return list;
     }
+
 
 }

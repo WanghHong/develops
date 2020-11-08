@@ -8,7 +8,7 @@ public class Demo {
     public static void main(String[] args) {
         System.out.println(1 + "" + 1);
         String a = "0123456";
-        System.out.println(String.valueOf(a.charAt(0)));
+        System.out.println(Integer.valueOf(String.valueOf(a.charAt(0))));
 //
 
     }

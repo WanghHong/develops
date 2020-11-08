@@ -2,6 +2,7 @@ package com.wh.kaifa.mapper;
 
 import com.wh.kaifa.DTO.CaipiaoDTO;
 import com.wh.kaifa.DTO.CanlaDaDTO;
+import com.wh.kaifa.DTO.ResultDTO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -67,5 +68,11 @@ public interface CaipaiMapper {
     List<Integer> querySizeNew(Map<String, Object> map);
 
     List<Integer> queryRemark(@Param("list") List<Integer> list);
+
+    List<ResultDTO>  queryThreeRate1(Map<String, Object> map);
+    List<ResultDTO>  queryThreeRate2(Map<String, Object> map);
+    List<ResultDTO>  queryThreeRate3(Map<String, Object> map);
+    List<ResultDTO>  queryThreeRate4(Map<String, Object> map);
+    List<ResultDTO>  queryThreeRate5(Map<String, Object> map);
 
 }

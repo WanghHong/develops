@@ -344,6 +344,150 @@ WHERE
         </foreach>
 
     </select>
+    
+    <select id="queryThreeRate1" parameterType="java.util.Map" resultType="com.wh.kaifa.DTO.ResultDTO">
+            SELECT
+            t3.N1 openNum,
+            count(1) countNum
+        FROM
+            T_CAIPIAO_INFO t3
+        WHERE
+            t3.ID IN (
+            SELECT
+                t2.ID + 1
+            FROM
+                T_CAIPIAO_INFO t2
+            WHERE
+                t2.ID IN (
+                SELECT
+                    t1.ID + 1
+                FROM
+                    T_CAIPIAO_INFO t1
+                WHERE
+                    t1.ID IN ( SELECT t.ID + 1 FROM T_CAIPIAO_INFO t WHERE t.N1 = #{position1} )
+                    AND t1.N1 = #{position2}
+                )
+                AND t2.N1 = #{position3}
+            )
+        GROUP BY
+            t3.N1
+    </select>
+
+
+    <select id="queryThreeRate2" parameterType="java.util.Map" resultType="com.wh.kaifa.DTO.ResultDTO">
+        SELECT
+        t3.N2 openNum,
+        count(1) countNum
+        FROM
+        T_CAIPIAO_INFO t3
+        WHERE
+        t3.ID IN (
+        SELECT
+        t2.ID + 1
+        FROM
+        T_CAIPIAO_INFO t2
+        WHERE
+        t2.ID IN (
+        SELECT
+        t1.ID + 1
+        FROM
+        T_CAIPIAO_INFO t1
+        WHERE
+        t1.ID IN ( SELECT t.ID + 1 FROM T_CAIPIAO_INFO t WHERE t.N2 = #{position1} )
+        AND t1.N2 = #{position2}
+        )
+        AND t2.N2 = #{position3}
+        )
+        GROUP BY
+        t3.N2
+    </select>
+
+
+    <select id="queryThreeRate3" parameterType="java.util.Map" resultType="com.wh.kaifa.DTO.ResultDTO">
+        SELECT
+        t3.N3 openNum,
+        count(1) countNum
+        FROM
+        T_CAIPIAO_INFO t3
+        WHERE
+        t3.ID IN (
+        SELECT
+        t2.ID + 1
+        FROM
+        T_CAIPIAO_INFO t2
+        WHERE
+        t2.ID IN (
+        SELECT
+        t1.ID + 1
+        FROM
+        T_CAIPIAO_INFO t1
+        WHERE
+        t1.ID IN ( SELECT t.ID + 1 FROM T_CAIPIAO_INFO t WHERE t.N3 = #{position1} )
+        AND t1.N3 = #{position2}
+        )
+        AND t2.N3 = #{position3}
+        )
+        GROUP BY
+        t3.N3
+    </select>
+
+
+    <select id="queryThreeRate4" parameterType="java.util.Map" resultType="com.wh.kaifa.DTO.ResultDTO">
+        SELECT
+        t3.N4 openNum,
+        count(1) countNum
+        FROM
+        T_CAIPIAO_INFO t3
+        WHERE
+        t3.ID IN (
+        SELECT
+        t2.ID + 1
+        FROM
+        T_CAIPIAO_INFO t2
+        WHERE
+        t2.ID IN (
+        SELECT
+        t1.ID + 1
+        FROM
+        T_CAIPIAO_INFO t1
+        WHERE
+        t1.ID IN ( SELECT t.ID + 1 FROM T_CAIPIAO_INFO t WHERE t.N4 = #{position1} )
+        AND t1.N4 = #{position2}
+        )
+        AND t2.N4 = #{position3}
+        )
+        GROUP BY
+        t3.N4
+    </select>
+
+
+    <select id="queryThreeRate5" parameterType="java.util.Map" resultType="com.wh.kaifa.DTO.ResultDTO">
+        SELECT
+        t3.N5 openNum,
+        count(1) countNum
+        FROM
+        T_CAIPIAO_INFO t3
+        WHERE
+        t3.ID IN (
+        SELECT
+        t2.ID + 1
+        FROM
+        T_CAIPIAO_INFO t2
+        WHERE
+        t2.ID IN (
+        SELECT
+        t1.ID + 1
+        FROM
+        T_CAIPIAO_INFO t1
+        WHERE
+        t1.ID IN ( SELECT t.ID + 1 FROM T_CAIPIAO_INFO t WHERE t.N5 = #{position1} )
+        AND t1.N5 = #{position2}
+        )
+        AND t2.N5 = #{position3}
+        )
+        GROUP BY
+        t3.N5
+    </select>
 
 
 

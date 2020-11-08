@@ -28,4 +28,6 @@ public interface CaipiaoService {
 
     String getsizeRateNew(String openNun, Integer m);
 
+    String getThreeRate(String  openNum1, String openNum2, String openNum3);
+
 }
