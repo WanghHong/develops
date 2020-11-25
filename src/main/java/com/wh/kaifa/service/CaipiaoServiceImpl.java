@@ -705,7 +705,7 @@ public class CaipiaoServiceImpl implements CaipiaoService {
                 big = false;
                 small = false;
                 for(int i = 1; i <= m; i ++) {
-                    list.add(id + 10 + i);
+                    list.add(id + 9 + i);
                 }
                 List<Integer> remarks = caipaiMapper.queryRemark(list);
                 for (Integer remark : remarks) {

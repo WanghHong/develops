@@ -185,4 +185,11 @@ public class CaipiaoController {
         return caipiaoService.getThreeRate(openNum1, openNum2, openNum3);
     }
 
+    @GetMapping("/getTenRate/{openNum}")
+    public String getTenRate(
+            @PathVariable(name = "openNum") String openNum) {
+        return caipiaoService.getsizeRateNew(openNum, 1);
+    }
+
+
 }
