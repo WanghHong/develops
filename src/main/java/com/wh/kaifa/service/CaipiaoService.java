@@ -30,4 +30,8 @@ public interface CaipiaoService {
 
     String getThreeRate(String  openNum1, String openNum2, String openNum3);
 
+    String getThreeRateNew(String  openNum1, String openNum2, String openNum3);
+
+
+
 }

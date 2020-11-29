@@ -192,4 +192,13 @@ public class CaipiaoController {
     }
 
 
+    @GetMapping("/getThreeRateNew/{openNum1}/{openNum2}/{openNum3}")
+    public String getSizeRateNew1(
+            @PathVariable(name = "openNum1") String openNum1,
+            @PathVariable(name = "openNum2") String openNum2,
+            @PathVariable(name = "openNum3") String openNum3) {
+        return caipiaoService.getThreeRateNew(openNum1, openNum2, openNum3);
+    }
+
+
 }

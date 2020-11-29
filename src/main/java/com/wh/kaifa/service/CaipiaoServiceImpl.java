@@ -802,6 +802,65 @@ public class CaipiaoServiceImpl implements CaipiaoService {
         }
     }
 
+    @Override
+    public String getThreeRateNew(String openNum1, String openNum2, String openNum3) {
+        try {
+            List<Integer> list = null;
+            List<Integer> resultList1 = null;
+            List<Integer> resultList2 = null;
+            List<Integer> resultList3 = null;
+            List<Integer> resultList4 = null;
+            List<Integer> resultList5 = null;
+            for (int i = 0; i < 5; i ++) {
+                list = new ArrayList<>();
+                list.add(Integer.valueOf(String.valueOf(openNum1.charAt(i))));
+                list.add(Integer.valueOf(String.valueOf(openNum2.charAt(i))));
+                list.add(Integer.valueOf(String.valueOf(openNum3.charAt(i))));
+                if (i == 0) {
+                    resultList1 = handNumlist(list, i);
+                }
+                if (i == 1) {
+                    resultList2 = handNumlist(list, i);
+                }
+                if (i == 2) {
+                    resultList3 = handNumlist(list, i);
+                }
+                if (i == 3) {
+                    resultList4 = handNumlist(list, i);
+                }
+                if (i == 4) {
+                    resultList5 = handNumlist(list, i);
+                }
+            }
+            List<Integer> finalList = new ArrayList<>();
+            int count = 0;
+            for (int i = 0; i <= 9; i ++) {
+                count = 0;
+                if (resultList1.contains(i)) {
+                    count ++;
+                }
+                if (resultList2.contains(i)) {
+                    count ++;
+                }
+                if (resultList3.contains(i)) {
+                    count ++;
+                }
+                if (resultList4.contains(i)) {
+                    count ++;
+                }
+                if (resultList5.contains(i)) {
+                    count ++;
+                }
+                if (count == 5) {
+                    finalList.add(i);
+                }
+            }
+            return finalList.toString();
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
     private List<Integer> handNumlist(List<Integer> list, Integer position) throws Exception {
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("position1", list.get(0));
